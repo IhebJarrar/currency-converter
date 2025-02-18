@@ -68,6 +68,8 @@ export class ConverterComponent{
       convertedAmountCurrency: this.targetCurrency
     }
     // I was thinking by using signal to be consistent, but we can't update a signal within computed function
+    // computed signal are ReadableSignal
+    // Maybe use LinkedSignal: to check
     this.history.unshift(entry);
     if (this.history.length > 5) {
       this.history.pop();
