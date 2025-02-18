@@ -16,7 +16,7 @@
         <label for="amountId" class="form-label">Please provide your amount</label>
         <input type="number" [(ngModel)]="amount" class="form-control" placeholder="Enter amount" id="amountId"/>
         <p class="mt-1">
-          Converted Amount: <span class="fw-bold">{{ convertedAmount(200) | number : "1.2-2" }} {{ targetCurrency }}</span>
+          Converted Amount: <span class="fw-bold">{{ convertedAmount() | number : "1.2-2" }} {{ targetCurrency }}</span>
         </p>
     </div>
 
