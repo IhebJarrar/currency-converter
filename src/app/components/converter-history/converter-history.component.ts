@@ -6,7 +6,6 @@ import { ConversionHistory } from '@models/converter.model';
   selector: 'app-converter-history',
   imports: [CommonModule],
   templateUrl: './converter-history.component.html',
-  styleUrl: './converter-history.component.scss',
   standalone: true
 })
 export class ConverterHistoryComponent {

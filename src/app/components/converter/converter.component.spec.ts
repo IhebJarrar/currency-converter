@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 
 import { ConverterComponent } from './converter.component';
 import { ConverterService } from '@services/converter.service';
-import { ConverterHistoryComponent } from '@components/converter-history/converter-history.component';
-import { CommonModule } from '@angular/common';
 
 describe('ConverterComponent', () => {
   let component: ConverterComponent;
@@ -29,13 +26,13 @@ describe('ConverterComponent', () => {
   });
 
   it('should switch between currencies (EUR/USD)', () => {
-    component.amount = 100;
+    component.selectedAmount = 100;
     component.currencyType = 'USD';
     expect(component.targetCurrency).toBe('EUR');
   });
 
   it('should add conversion to history array', <any>fakeAsync(() => {
-    component.amount = 200;
+    component.selectedAmount = 200;
     component.currencyType = 'EUR';
     fixture.detectChanges();
     tick(3000);
@@ -46,7 +43,7 @@ describe('ConverterComponent', () => {
 
   it('should maintain only last 5 conversions in history', () => {
     for (let i = 0; i < 6; i++) {
-      component.amount = 100 + i;
+      component.selectedAmount = 100 + i;
     }
     expect(component.history.length).toBe(5);
   });
@@ -54,6 +51,6 @@ describe('ConverterComponent', () => {
   it('should use real rate when fixed rate variation exceeds 2%', fakeAsync(() => {
     component.fixedRate = 1.2;
     component.applyFixedRate();
-    expect(converterService.currentRate()).not.toBe(1.2);
+    expect(converterService.appliedRate()).not.toBe(1.2);
   }));
 });

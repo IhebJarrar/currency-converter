@@ -19,7 +19,7 @@ export class ConverterService {
     return this._fixedRate.asReadonly();
   };
 
-  currentRate = computed(() => {
+  appliedRate = computed(() => {
     const currentRate = this.exchangeRate();
     const fixatedRate = this.fixedRate();
     if (fixatedRate && Math.abs(fixatedRate - currentRate) <= 0.02 * currentRate) {
@@ -37,7 +37,7 @@ export class ConverterService {
     interval(3000).pipe(
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(() => {
-      const variation = Math.random() * (0.05 + 0.1) - 0.05;
+      const variation = (Math.random() * 0.1) - 0.05;
       this._exchangeRate.set(ConverterService.BASE_RATE + variation);
     });
   }
