@@ -1,0 +1,39 @@
+<div class="converter-container">
+    <p class="fw-bold"> The exchange Rate (EUR/USD) {{ exchangeRate | number : "1.2-2" }} </p>
+
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="currencyType" id="currencyType_1" [(ngModel)]="currencyType" value="EUR">
+        <label class="form-check-label" for="currencyType_1">EUR TO USD</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="currencyType" id="currencyType_2" [(ngModel)]="currencyType" value="USD">
+        <label class="form-check-label" for="currencyType_2">USD TO EUR</label>
+    </div>
+    
+    
+    <div class="mt-2">
+        <label for="amountId" class="form-label">Please provide your amount</label>
+        <input type="number" [(ngModel)]="amount" class="form-control" placeholder="Enter amount" id="amountId"/>
+        <p class="mt-1">
+          Converted Amount: <span class="fw-bold">{{ convertedAmount(200) | number : "1.2-2" }} {{ targetCurrency }}</span>
+        </p>
+    </div>
+
+
+    <div class="mt-2">
+        <label for="forceRate" class="form-label">Please provide fixed exchange rate</label>
+        <input type="number" [(ngModel)]="fixedRate" class="form-control" placeholder="Enter amount" id="forceRate"/>
+    </div>
+
+    <div class="mt-3 d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary mx-2" (click)="applyFixedRate()">Apply Fixed Rate</button>
+        <button type="button" class="btn btn-danger" (click)="resetFixedRate()">Reset Fixed Rate</button>
+    </div>
+
+
+    <div class="mt-3">
+        <h3 class="d-flex justify-content-center">Conversion History</h3>
+        <app-converter-history [history]="history"></app-converter-history>
+    </div>
+</div>

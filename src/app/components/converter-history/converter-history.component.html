@@ -1,0 +1,30 @@
+@if(history.length) {
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Real rate</th>
+        <th scope="col">Fixed rate</th>
+        <th scope="col">Initial value</th>
+        <th scope="col">Converted value</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(entry of history; track $index) {
+        <tr class="text-center">
+          <th>
+            {{ entry.realRate | number : "1.2-2" }}
+          </th>
+          <td>
+            {{ entry.fixedRate || 'N/A' }}
+          </td>
+          <td>
+            {{ entry.initialAmount | number : "1.2-2" }} {{ entry.amountCurrency }}
+          </td>
+          <td>
+            {{ entry.convertedAmount | number : "1.2-2" }} {{ entry.convertedAmountCurrency }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
